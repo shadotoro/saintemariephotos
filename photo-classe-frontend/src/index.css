@@ -1,0 +1,120 @@
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+
+.App {
+  text-align: center;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour le conteneur des photos */
+.photoContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Styles pour chaque image */
+.photoItem {
+  width: 550px;
+  height: auto;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.photoItem:hover {
+  transform: scale(2.2);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles pour une image sélectionnée */
+.selectedPhoto {
+  border: 3px solid green;
+  transform: scale(1.15);
+}
+
+/* Autres styles généraux */
+.orderForm {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.orderForm input,
+.orderForm button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.orderForm button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.orderForm button:hover {
+  background-color: #0056b3;
+}
+
+
+.selectedImage {
+  max-width: 300px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.code-input {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.successMessage {
+  background-color: #e0ffe0;
+  color: #008000;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #00b300;
+  text-align: center;
+  margin-top: 20px;
+}
+
