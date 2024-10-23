@@ -1,9 +1,10 @@
 {
   "name": "photo-classe-frontend",
   "version": "1.0.0",
+  "homepage": "./",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -11,7 +12,8 @@
   "dependencies": {
     "axios": "^1.7.7",
     "react-dom": "^18.3.1",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "serve": "^14.2.4"
   },
   "browserslist": {
     "production": [
