@@ -6,11 +6,14 @@ require('dotenv').config();
 
 const app = express();
 
+const corsOptions = {
+    origin: ['http://localhost:3000', 'https://stm-frontend-production.up.railway.app'], // Autoriser plusieurs origines
+    optionsSuccessStatus: 200
+    };
+
 // Middleware
-app.use(cors({
-    origin: 'https://stm-frontend.railway.internal',
-}));
-app.use(express.json());
+    app.use(cors(corsOptions));
+    app.use(express.json());
 
 // Connexion à la base de données
 connectDB();
