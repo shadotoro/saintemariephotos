@@ -18,7 +18,7 @@ function App() {
   // Gérer la soumission de la commande
   const handleSubmitOrder = async (orderData) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/classes/order', orderData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/classes/order`, orderData);
       setSuccessMessage(res.data.message);
       // Reset après commande
       setPhotos([]);
