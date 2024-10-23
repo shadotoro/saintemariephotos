@@ -7,7 +7,9 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: 'https://stm-frontend.railway.internal',
+}));
 app.use(express.json());
 
 // Connexion à la base de données
