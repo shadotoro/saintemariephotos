@@ -6,7 +6,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 // valide le code d'accès
 export const validateAccessCode = async (codeAcces) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/api/classes/access`, { codeAcces });
+    const response = await axios.post(`${API_BASE_URL}/api/classes/access`, { codeAcces: code });
     return response.data;
   } catch (error) {
     throw error.response.data.message || 'Erreur lors de la validation du code';
