@@ -11,9 +11,11 @@ function AccessPage({ onAccess }) {
     setLoading(true);
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/classes/access`, { codeAcces: code });
-      if (res.data.photos) {
+      if (res.data && res.data.photos) {
         onAccess(code, res.data.photos);
         setError('');
+      } else {
+        setError('code invalide');
       }
     } catch (err) {
       setError('Code invalide');

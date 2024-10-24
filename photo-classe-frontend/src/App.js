@@ -11,8 +11,13 @@ function App() {
 
   // Gérer la validation du code d'accès et le chargement des photos
   const handleAccess = (code, photos) => {
-    setCodeAcces(code);
-    setPhotos(photos);
+    if (photos.length > 0) {
+      setCodeAcces(code);
+      setPhotos(photos);
+      setError('');
+    } else {
+      setError('Aucune photo trouvée pour ce code');
+    }
   };
 
   // Gérer la soumission de la commande
