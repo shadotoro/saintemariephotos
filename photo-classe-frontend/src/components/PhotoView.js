@@ -6,12 +6,12 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
   const [prenom, setPrenom] = useState('');
   const [exemplaires, setExemplaires] = useState(1);
   const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Ajout pour message d'erreur
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handlePhotoClick = (photo) => {
     setSelectedPhoto(photo);
     setSuccessMessage('');
-    setErrorMessage(''); // Réinitialisation du message d'erreur
+    setErrorMessage('');
   };
 
   const handleSubmit = (e) => {
@@ -34,7 +34,7 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
         {photos.map((photo, index) => (
           <img
             key={index}
-            src={photo.url || photo} // Vérifie que `photo` est bien une URL
+            src={photo.url || photo}
             alt={`Photo ${index}`}
             onClick={() => handlePhotoClick(photo)}
             className={`photoItem ${selectedPhoto === photo ? 'selectedPhoto' : ''}`}

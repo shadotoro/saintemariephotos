@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // Base URL de l'API
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+console.log('API URL utilisée :', API_BASE_URL); ////////////////////////////////////////////////////////
 
 // valide le code d'accès
 export const validateAccessCode = async (codeAcces) => {

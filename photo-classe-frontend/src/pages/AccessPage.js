@@ -9,6 +9,7 @@ function AccessPage({ onAccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log('code soumis :', code); ////////////////////////////////////
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/classes/access`, { codeAcces: code });
       if (res.data && res.data.photos) {
