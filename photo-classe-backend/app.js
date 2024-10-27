@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://stm-frontend-production.up.railway.app'],
+    origin: ['http://localhost:3000', 'https://stm-frontend-production-f0c0.up.railway.app'],
     optionsSuccessStatus: 200
     };
 
