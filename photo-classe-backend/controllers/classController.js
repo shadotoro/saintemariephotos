@@ -14,11 +14,10 @@ exports.validateCode = async (req, res) => {
 
 // Soumet une commande (nom, prénom, photo choisie)
 exports.submitOrder = async (req, res) => {
-  console.log(req.body);
   const { codeAcces, name, prenom, photoChosen, exemplaires } = req.body;
 
   try {
-    const classe = await Class.findOne({ codeAcces });
+    const classe = await Class.findOne({ codeAcces: codeAcces.trim().toLowerCase() });
     if (!classe) {
       return res.status(404).json({ message: 'Classe non trouvée' });
     }

@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://stm-frontend-production.up.railway.app'], // Autoriser plusieurs origines
+    origin: ['http://localhost:3000', 'https://stm-frontend-production.up.railway.app'],
     optionsSuccessStatus: 200
     };
 
@@ -18,17 +18,22 @@ const corsOptions = {
 // Connexion à la base de données
 connectDB();
 
-// En-tête Content-Type pour les fichiers CSS et JS
+// En-tête Content-Type et sécurité pour tous les types de fichiers
 app.use((req, res, next) => {
-    if (req.path.endsWith('.css')) {
+    const fileTypes = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.ico'];
+    const ext = fileTypes.find(type => req.path.endsWith(type));
+
+    if (ext) {
+        if (ext === '.css') {
         res.setHeader('Content-Type', 'text/css');
-    }
-    if (req.path.endsWith('.js')) {
+        }
+        if (ext === '.js') {
         res.setHeader('Content-Type', 'application/javascript');
+        }
+// En-têtes de sécurité et cache pour tous les fichiers
+        res.setHeader('X-Content-Type-Options', 'nosniff');
+        res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache pour les fichiers statiques
     }
-    // En-tête pour la sécurité et le cache
-    res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache pour les fichiers statiques
     next();
 });
 
