@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Photos de classes école Sainte-Marie</h1>
+      <h1>Bienvenue sur les photos des classes de l'école Sainte-Marie</h1>
       <h2>2024 / 2025</h2>
 
       {successMessage && (
