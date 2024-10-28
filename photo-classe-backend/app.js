@@ -8,12 +8,16 @@ const app = express();
 
 const corsOptions = {
     origin: ['http://localhost:3000', 'https://stm-frontend-production-f0c0.up.railway.app'],
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization','X-XSRF-TOKEN'],
+    credentials: true,
     optionsSuccessStatus: 200
     };
 
 // Middleware
     app.use(cors(corsOptions));
-    app.use(express.json());
+    app.use(express.json({ limit: '50mb' }));
+    app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Connexion à la base de données
 connectDB();

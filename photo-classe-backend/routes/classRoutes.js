@@ -8,13 +8,13 @@ router.post('/access', validateCode);
 
 // Route pour soumettre une commande
 router.post('/order', verifyAccessCode, (req, res, next) => {
-    console.log('Requête reçue sur /order');
+    console.log('Body reçu:', req.body);
+    console.log('Headers reçus:', req.headers);
     next();
-    }, submitOrder);
+}, submitOrder);
 
-    router.get('/test', (req, res) => {
-        res.status(200).json({ message: 'Route de test fonctionnelle' });
-      });
-      
+router.get('/test', (req, res) => {
+    res.status(200).json({ message: 'Route de test fonctionnelle' });
+});
 
 module.exports = router;
