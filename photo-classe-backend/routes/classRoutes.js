@@ -7,6 +7,14 @@ const router = express.Router();
 router.post('/access', validateCode);
 
 // Route pour soumettre une commande
-router.post('/order', verifyAccessCode, submitOrder);
+router.post('/order', verifyAccessCode, (req, res, next) => {
+    console.log('Requête reçue sur /order');
+    next();
+    }, submitOrder);
+
+    router.get('/test', (req, res) => {
+        res.status(200).json({ message: 'Route de test fonctionnelle' });
+      });
+      
 
 module.exports = router;
