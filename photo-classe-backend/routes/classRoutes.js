@@ -21,19 +21,22 @@ router.post('/order', verifyAccessCode, async (req, res) => {
             classeId: classe._id
         });
 
-        // Créer la commande
-        const commande = {
+        // Crée la commande et l'ajoute au tableau orders de la classe
+        classe.orders.push({
             name,
             prenom,
             photoChosen,
-            exemplaires,
-            classeId: classe._id
-        };
+            exemplaires
+        });
 
-        // Réponse immédiate pour tester
+        // Sauvegarde les modifications
+        await classe.save();
+
+        console.log('Commande sauvegardée avec succès');
+
         res.status(200).json({
-            message: 'Commande reçue avec succès',
-            commande
+            message: 'Commande enregistrée avec succès',
+            commande: classe.orders[classe.orders.length - 1]
         });
 
     } catch (error) {
