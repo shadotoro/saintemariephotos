@@ -9,15 +9,16 @@ const app = express();
 const corsOptions = {
     origin: ['http://localhost:3000', 'https://stm-frontend-production-f0c0.up.railway.app'],
     methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization','X-XSRF-TOKEN'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-XSRF-TOKEN'],
     credentials: true,
-    optionsSuccessStatus: 200
-    };
+    optionsSuccessStatus: 200,
+    exposedHeaders: ['Content-Length', 'X-Content-Type-Options']
+};
 
 // Middleware
-    app.use(cors(corsOptions));
-    app.use(express.json({ limit: '50mb' }));
-    app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Connexion à la base de données
 connectDB();
@@ -43,5 +44,15 @@ app.use((req, res, next) => {
 
 // Route
 app.use('/api/classes', classRoutes);
+
+// middleware d'erreur global
+app.use((err, req, res, next) => {
+    console.error('Erreur globale:', err);
+    res.status(err.status || 500).json({
+        message: err.message || 'Erreur serveur interne',
+        path: req.path,
+        method: req.method
+    });
+});
 
 module.exports = app;
