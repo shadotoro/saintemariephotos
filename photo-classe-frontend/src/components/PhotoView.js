@@ -51,6 +51,12 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
       {/* Message d'erreur */}
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
+      {!commandeActive && (
+        <p style={{ color: 'gray', textAlign: 'center', marginTop: '20px' }}>
+          La commande en ligne est désactivée. Veuillez utiliser la version papier et reporter le numéro de la photo choisie. Merci de votre compréhension.
+        </p>
+      )}
+
       {/* Formulaire de commande */}
       {commandeActive && selectedPhoto && (
         <div className="orderForm">
