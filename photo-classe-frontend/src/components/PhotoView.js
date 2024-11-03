@@ -9,9 +9,11 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo);
-    setSuccessMessage('');
-    setErrorMessage('');
+    if (selectedPhoto === photo) {
+      setSelectedPhoto(null);
+    } else {
+      setSelectedPhoto(photo);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -29,24 +31,26 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
     <div>
       <h2>Photos de la classe {codeAcces}</h2>
 
-      {/* Affichage des photos */}
       <div className="photoContainer">
-        {photos.map((photo, index) => (
-          <img
-            key={index}
-            src={photo.url || photo}
-            alt={`Photo ${index}`}
-            onClick={() => handlePhotoClick(photo)}
-            className={`photoItem ${selectedPhoto === photo ? 'selectedPhoto' : ''}`}
-          />
-        ))}
-      </div>
+  {photos.map((photo, index) => (
+    <div key={index} className="photoItemContainer">
+      <img
+        src={photo.url}
+        alt={`Photo ${photo.numero}`}
+        onClick={() => handlePhotoClick(photo)}
+        className={`photoItem ${selectedPhoto === photo ? 'selectedPhoto' : ''}`}
+      />
+      <p className="photoNumber">Photo n°{photo.numero}</p>
+    </div>
+  ))}
+</div>
+
 
       {/* Message d'erreur */}
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
       {/* Formulaire de commande */}
-      {selectedPhoto && (
+      {commandeActive && selectedPhoto && (
         <div className="orderForm">
           <h3>Photo sélectionnée</h3>
           <img src={selectedPhoto.url || selectedPhoto} alt="Selected" className="selectedImage" style={{ width: '100%', marginBottom: '20px', borderRadius: '8px' }} />
