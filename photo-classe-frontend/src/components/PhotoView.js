@@ -8,6 +8,8 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const commandeActive = false;
+
   const handlePhotoClick = (photo) => {
     if (selectedPhoto === photo) {
       setSelectedPhoto(null);
