@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 
 const ClassSchema = new mongoose.Schema({
   codeAcces: { type: String, required: true, unique: true },
-  photos: [String],  
+  photos: [
+    {
+      url: { type: String, required: true },
+      numero: { type: Number }
+    }
+  ],  
     orders: [
     {
       name: { type: String, required: true },

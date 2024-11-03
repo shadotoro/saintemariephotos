@@ -14,7 +14,7 @@ const verifyAccessCode = async (req, res, next) => {
       });
     }
 
-    // Nettoyage de l'URL de la photo (suppression du point-virgule si présent)
+    // Nettoyage de l'URL de la photo
     req.body.photoChosen = photoChosen.replace(/;$/, '');
 
     const classe = await Class.findOne({ codeAcces });
@@ -25,7 +25,7 @@ const verifyAccessCode = async (req, res, next) => {
       });
     }
 
-    // Attacher la classe et les données nettoyées à la requête
+    // Attache la classe et les données nettoyées à la requête
     req.classe = classe;
     next();
   } catch (error) {
