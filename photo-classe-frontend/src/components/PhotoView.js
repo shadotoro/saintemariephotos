@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 function PhotoView({ photos, codeAcces, onSubmitOrder }) {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [name, setName] = useState('');
@@ -7,12 +5,22 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
   const [exemplaires, setExemplaires] = useState(1);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  
+  // désactive le bon de commande
+  const commandeActive = false;
 
   const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo);
-    setSuccessMessage('');
-    setErrorMessage('');
+    console.log('Photo cliquée :', photo);
+    if (selectedPhoto === photo) {
+      setSelectedPhoto(null);
+      console.log('Désactivation du zoom');
+    } else {
+      setSelectedPhoto(photo);
+      console.log('Activation du zoom');
+    }
   };
+  
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,28 +37,29 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
     <div>
       <h2>Photos de la classe {codeAcces}</h2>
 
-      {/* Affichage des photos */}
-      <div className="photoContainer">
-        {photos.map((photo, index) => (
+    <div className="photoContainer">
+      {photos.map((photo, index) => (
+        <div key={index} className="photoItemContainer">
           <img
-            key={index}
             src={photo.url || photo}
             alt={`Photo ${index}`}
             onClick={() => handlePhotoClick(photo)}
             className={`photoItem ${selectedPhoto === photo ? 'selectedPhoto' : ''}`}
           />
-        ))}
-      </div>
+          <p className="photoNumber">Photo n°{index + 1}</p>
+        </div>
+      ))}
+    </div>
 
-      {/* Message d'erreur */}
+
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
-      {/* Formulaire de commande */}
-      {selectedPhoto && (
+      {/* Désactivation conditionnelle du formulaire de commande */}
+      {commandeActive && selectedPhoto && (
         <div className="orderForm">
           <h3>Photo sélectionnée</h3>
           <img src={selectedPhoto.url || selectedPhoto} alt="Selected" className="selectedImage" style={{ width: '100%', marginBottom: '20px', borderRadius: '8px' }} />
-          
+
           <form onSubmit={handleSubmit}>
             <div>
               <label>Nom de l'enfant :</label>
@@ -75,7 +84,12 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
         </div>
       )}
 
-      {/* Message de confirmation */}
+      {!commandeActive && (
+        <p style={{ color: 'gray', textAlign: 'center', marginTop: '20px' }}>
+          Le bon de commande en ligne est désactivé, il vous faut relever le numéro de photo que vous désirez et le reporter sur le bon de commande papier qui vous a été remis avec la photo individuelle, d'avance merci de votre compréhension.
+        </p>
+      )}
+
       {successMessage && (
         <div className="successMessage" style={{ color: 'green' }}>
           {successMessage}
@@ -84,5 +98,3 @@ function PhotoView({ photos, codeAcces, onSubmitOrder }) {
     </div>
   );
 }
-
-export default PhotoView;
