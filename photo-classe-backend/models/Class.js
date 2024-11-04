@@ -5,7 +5,7 @@ const ClassSchema = new mongoose.Schema({
   photos: [
     {
       url: { type: String, required: true },
-      numero: { type: Number }
+      numero: { type: String, required: true }
     }
   ],  
     orders: [

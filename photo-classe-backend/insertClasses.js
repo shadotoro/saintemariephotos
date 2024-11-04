@@ -101,11 +101,16 @@ const updateClasses = async () => {
   try {
     for (const classToUpdate of classesToUpdate) {
       const updatedClass = await Class.findOneAndUpdate(
-        { codeAcces: classToUpdate.codeAcces }, // Trouve la classe par code d'accès
-        { photos: classToUpdate.photos },       // Mettre à jour les URLs des photos
-        { new: true }                           // Renvoie la classe mise à jour
+        { codeAcces: classToUpdate.codeAcces },
+        { $set: { photos: classToUpdate.photos } },
+        { new: true, useFindAndModify: false }
       );
-      console.log(`Classe mise à jour : ${updatedClass.codeAcces}`);
+      if (updatedClass) {
+        console.log(`Classe mise à jour : ${updatedClass.codeAcces}`);
+        console.log('Photos mises à jour :', updatedClass.photos);
+      } else {
+        console.log(`Aucune classe trouvée avec le code d'accès : ${classToUpdate.codeAcces}`);
+      }
     }
     process.exit();
   } catch (error) {
@@ -113,6 +118,7 @@ const updateClasses = async () => {
     process.exit(1);
   }
 };
+
 
 // Exécute la mise à jour
 const run = async () => {
