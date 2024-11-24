@@ -1,6 +1,6 @@
-# Photo Classe
+# Sainte-Marie Photos
 
-Ce dépôt contient le code backend et le frontend de l'application **Photo Classe**. 
+Ce dépôt contient le code backend et le frontend de l'application **saintemariephotos**. 
 L'application permet aux utilisateurs de consulter et de commander des photos de classe via un code d'accès. Ce backend gère l'authentification des codes d'accès et le stockage des commandes.
 
 ## Déploiement
